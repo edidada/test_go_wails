@@ -8,6 +8,8 @@
 
 ## 快速开始
 
+要求 Go 1.24+（macOS 26 的 dyld 要求二进制包含 `LC_UUID`，Go 1.24 起默认生成）。
+
 ```bash
 go run ./cmd/app
 ```

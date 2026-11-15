@@ -30,7 +30,7 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
-          cache: true
+          cache: false
 
       - name: Check formatting
         if: matrix.os == 'ubuntu-latest'
