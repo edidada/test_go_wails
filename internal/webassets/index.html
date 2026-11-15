@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>test_go_wails · Go 后端 + Web 前端</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="glow glow-a" aria-hidden="true"></div>
+  <div class="glow glow-b" aria-hidden="true"></div>
+
+  <main class="shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">纯 Go · 零依赖 · Wails 同构演示</p>
+        <h1>Go 后端，<span>Web 前端</span></h1>
+        <p class="lede">
+          Go 进程通过本机回环 HTTP 暴露 JSON 方法，浏览器用 <code>fetch</code> 调用。
+          分层与 Wails 的 Go bindings 一致，只是把系统 WebView 外壳换成了系统浏览器。
+        </p>
+      </div>
+      <span class="status" id="status" data-state="pending"><i></i><span id="status-text">连接中…</span></span>
+    </header>
+
+    <section class="grid">
+      <article class="card">
+        <div class="card-head">
+          <h2>运行环境</h2>
+          <button id="refresh" class="ghost small" type="button">刷新</button>
+        </div>
+        <dl class="info" id="info">
+          <div><dt>应用</dt><dd>—</dd></div>
+          <div><dt>版本</dt><dd>—</dd></div>
+          <div><dt>Go</dt><dd>—</dd></div>
+          <div><dt>平台</dt><dd>—</dd></div>
+          <div><dt>PID</dt><dd>—</dd></div>
+          <div><dt>已运行</dt><dd>—</dd></div>
+          <div><dt>启动时间</dt><dd>—</dd></div>
+        </dl>
+        <p class="hint">数据来自 <code>app.info</code>，由 <code>runtime</code> 与进程状态实时生成。</p>
+      </article>
+
+      <article class="card">
+        <h2>Greeter</h2>
+        <form id="greet-form" autocomplete="off">
+          <label for="name">你的名字</label>
+          <div class="row">
+            <input id="name" name="name" maxlength="32" placeholder="例如 Wails" spellcheck="false">
+            <button type="submit">调用 greet</button>
+          </div>
+        </form>
+        <p class="greeting" id="greeting">等待调用 <code>greeter.greet</code>…</p>
+        <p class="hint">空名字或超过 32 个字符时，后端返回 <code>invalid_params</code>。</p>
+      </article>
+
+      <article class="card">
+        <h2>Counter</h2>
+        <p class="counter" id="counter-value">0</p>
+        <div class="row wrap">
+          <button class="ghost" data-delta="-1" type="button">−1</button>
+          <button data-delta="1" type="button">+1</button>
+          <button class="ghost" data-delta="10" type="button">+10</button>
+          <button id="reset" class="ghost" type="button">归零</button>
+        </div>
+        <p class="hint">状态保存在 Go 进程内存中，重启后清零。</p>
+      </article>
+    </section>
+
+    <section class="card log-card">
+      <div class="card-head">
+        <h2>调用日志</h2>
+        <button id="clear" class="ghost small" type="button">清空</button>
+      </div>
+      <pre class="log" id="log" aria-live="polite"></pre>
+    </section>
+
+    <footer>
+      <span>docs/architecture.md</span>
+      <span>docs/high-level-design.md</span>
+      <span>GitHub Actions · Linux / macOS / Windows</span>
+    </footer>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>
